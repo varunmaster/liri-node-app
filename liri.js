@@ -1,5 +1,6 @@
 require("dotenv").config();
 var keys = require("./keys.js");
+var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
 var fs = require("fs");
@@ -47,6 +48,16 @@ function concertThis(arg) {
             }
             console.log(error.config);
         });
+}
+
+function spotifyThis(arg) {
+    spotify.search({ type: 'track', query: arg }, (err, data) => {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+      console.log(data); 
+      });
 }
 
 function movieThis(arg) {
