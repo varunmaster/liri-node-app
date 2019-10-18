@@ -1,7 +1,7 @@
 require("dotenv").config();
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
-var spotify = new Spotify({id: keys.spotify.id, secret: keys.spotify.secret});
+var spotify = new Spotify({ id: keys.spotify.id, secret: keys.spotify.secret });
 var axios = require("axios");
 var fs = require("fs");
 var moment = require("moment");
@@ -32,7 +32,7 @@ function concertThis(arg) {
         .then((res) => {
             // console.log(queryUrl);
             // console.log(res.data[0]);
-            console.log("Venue name: ", res.data[0].venue.name); 
+            console.log("Venue name: ", res.data[0].venue.name);
             console.log("Location: " + res.data[0].venue.city + ", " + res.data[0].venue.region);
             console.log("Time; ", moment(res.data[0].datetime).format("MM/DD/YYYY"));
         })
@@ -58,11 +58,19 @@ function concertThis(arg) {
 function spotifyThis(arg) {
     spotify.search({ type: 'track', query: arg }, (err, data) => {
         if (err) {
-          return console.log('Error occurred: ' + err);
+            return console.log('Error occurred: ' + err);
         }
-       
-      console.log(data); 
-      });
+        var info = data.tracks.items;
+        // console.log(info);
+        for (var i = 0; i < info.length; i++){
+            // Object.keys(info[i]).map(console.log(info[i].artists.name));
+            console.log("Artist(s): ", info[i].artists.map(artist => artist.name).join(', '));
+            console.log("Song Name: ", info[i].name);
+            console.log("Preview link: ", info[i].preview_url);
+            console.log("Album Name: ", info[i].album.name);
+        }
+        // console.log(data);
+    });
 }
 
 function movieThis(arg) {
@@ -109,7 +117,7 @@ function doWhatItSays() {
         if (dataArr[0] === "concert-this") {
             concertThis(dataArr[1]);
         }
-        else if (dataArr[0] === "spotify-this-song"){
+        else if (dataArr[0] === "spotify-this-song") {
             spotifyThis(dataArr[1]);
         } else {
             movieThis(dataArr[1]);
