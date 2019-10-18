@@ -56,21 +56,39 @@ function concertThis(arg) {
 }
 
 function spotifyThis(arg) {
-    spotify.search({ type: 'track', query: arg }, (err, data) => {
-        if (err) {
-            return console.log('Error occurred: ' + err);
-        }
-        var info = data.tracks.items;
-        // console.log(info);
-        for (var i = 0; i < info.length; i++){
-            // Object.keys(info[i]).map(console.log(info[i].artists.name));
-            console.log("Artist(s): ", info[i].artists.map(artist => artist.name).join(', '));
-            console.log("Song Name: ", info[i].name);
-            console.log("Preview link: ", info[i].preview_url);
-            console.log("Album Name: ", info[i].album.name);
-        }
-        // console.log(data);
-    });
+    if (arg) {
+        spotify.search({ type: 'track', query: arg }, (err, data) => {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+            var info = data.tracks.items;
+            // console.log(info);
+            for (var i = 0; i < info.length; i++) {
+                // Object.keys(info[i]).map(console.log(info[i].artists.name));
+                console.log("Artist(s): ", info[i].artists.map(artist => artist.name).join(', '));
+                console.log("Song Name: ", info[i].name);
+                console.log("Preview link: ", info[i].preview_url);
+                console.log("Album Name: ", info[i].album.name);
+            }
+            // console.log(data);
+        });
+    } else {
+        spotify.search({ type: 'track', query: "The Sign" }, (err, data) => {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+            var info = data.tracks.items;
+            // console.log(info);
+            for (var i = 0; i < info.length; i++) {
+                // Object.keys(info[i]).map(console.log(info[i].artists.name));
+                console.log("Artist(s): ", info[i].artists.map(artist => artist.name).join(', '));
+                console.log("Song Name: ", info[i].name);
+                console.log("Preview link: ", info[i].preview_url);
+                console.log("Album Name: ", info[i].album.name);
+            }
+            // console.log(data);
+        });
+    }
 }
 
 function movieThis(arg) {
