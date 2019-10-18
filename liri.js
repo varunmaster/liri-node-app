@@ -70,7 +70,16 @@ function movieThis(arg) {
     axios
         .get(queryUrl)
         .then((res) => {
-            console.log(res.data.Year); //display the other info
+            var info = res.data;
+            // console.log(info);
+            console.log("Title: ", info.Title); // console.log("Title: ", res.data.Title); //display the other info
+            console.log("Year: ", info.Year); // console.log("Year: ", res.data.Year);
+            console.log("IMDB Rating: ", info.imdbRating); // console.log("IMDB Rating: ", res.data.imdbRating);
+            console.log("Rotten Tomatoes: ", info.Ratings[1].Value); // console.log("Rotten Tomatoes Rating: ", res.data.Ratings[1].Value);
+            console.log("Country: ", info.Country); // console.log("Country: ", res.data.Country);
+            console.log("Language: ", info.Language); // console.log("Language: ", res.data.Language);
+            console.log("Plot: ", info.Plot); // console.log("Plot: ", res.data.Plot);
+            console.log("Actors: ", info.Actors); // console.log("Actors: ", res.data.Actors);
         })
         .catch((err) => {
             if (err.response) {
