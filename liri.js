@@ -23,6 +23,8 @@ switch (process.argv[2]) {
         doWhatItSays();
         appendToFile(process.argv[2], process.argv[3]);
         break;
+    default:
+        console.log("you didn't specify any pre-selected command");
 }
 
 function concertThis(arg) {
