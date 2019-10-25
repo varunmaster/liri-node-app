@@ -94,38 +94,74 @@ function spotifyThis(arg) {
 }
 
 function movieThis(arg) {
-    var queryUrl = "http://www.omdbapi.com/?t=" + arg + "&y=&plot=short&apikey=trilogy";
-    axios
-        .get(queryUrl)
-        .then((res) => {
-            var info = res.data;
-            // console.log(info);
-            console.log("Title: ", info.Title); // console.log("Title: ", res.data.Title); //display the other info
-            console.log("Year: ", info.Year); // console.log("Year: ", res.data.Year);
-            console.log("IMDB Rating: ", info.imdbRating); // console.log("IMDB Rating: ", res.data.imdbRating);
-            console.log("Rotten Tomatoes: ", info.Ratings[1].Value); // console.log("Rotten Tomatoes Rating: ", res.data.Ratings[1].Value);
-            console.log("Country: ", info.Country); // console.log("Country: ", res.data.Country);
-            console.log("Language: ", info.Language); // console.log("Language: ", res.data.Language);
-            console.log("Plot: ", info.Plot); // console.log("Plot: ", res.data.Plot);
-            console.log("Actors: ", info.Actors); // console.log("Actors: ", res.data.Actors);
-        })
-        .catch((err) => {
-            if (err.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-            } else if (err.request) {
-                // The request was made but no response was received
-                // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(err.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log("Error", err.message);
-            }
-            console.log(err.config);
-        });
+
+    if (arg) {
+        var queryUrl = "http://www.omdbapi.com/?t=" + arg + "&y=&plot=short&apikey=trilogy";
+        axios
+            .get(queryUrl)
+            .then((res) => {
+                var info = res.data;
+                // console.log(info);
+                console.log("Title: ", info.Title); // console.log("Title: ", res.data.Title); //display the other info
+                console.log("Year: ", info.Year); // console.log("Year: ", res.data.Year);
+                console.log("IMDB Rating: ", info.imdbRating); // console.log("IMDB Rating: ", res.data.imdbRating);
+                console.log("Rotten Tomatoes: ", info.Ratings[1].Value); // console.log("Rotten Tomatoes Rating: ", res.data.Ratings[1].Value);
+                console.log("Country: ", info.Country); // console.log("Country: ", res.data.Country);
+                console.log("Language: ", info.Language); // console.log("Language: ", res.data.Language);
+                console.log("Plot: ", info.Plot); // console.log("Plot: ", res.data.Plot);
+                console.log("Actors: ", info.Actors); // console.log("Actors: ", res.data.Actors);
+            })
+            .catch((err) => {
+                if (err.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(err.response.data);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);
+                } else if (err.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                    console.log(err.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log("Error", err.message);
+                }
+                console.log(err.config);
+            });
+    } else {
+        axios
+            .get("http://www.omdbapi.com/?t=Mr+Nobody&y=&plot=short&apikey=trilogy")
+            .then((res) => {
+                var info = res.data;
+                // console.log(info);
+                console.log("Title: ", info.Title); // console.log("Title: ", res.data.Title); //display the other info
+                console.log("Year: ", info.Year); // console.log("Year: ", res.data.Year);
+                console.log("IMDB Rating: ", info.imdbRating); // console.log("IMDB Rating: ", res.data.imdbRating);
+                console.log("Rotten Tomatoes: ", info.Ratings[1].Value); // console.log("Rotten Tomatoes Rating: ", res.data.Ratings[1].Value);
+                console.log("Country: ", info.Country); // console.log("Country: ", res.data.Country);
+                console.log("Language: ", info.Language); // console.log("Language: ", res.data.Language);
+                console.log("Plot: ", info.Plot); // console.log("Plot: ", res.data.Plot);
+                console.log("Actors: ", info.Actors); // console.log("Actors: ", res.data.Actors);
+            })
+            .catch((err) => {
+                if (err.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(err.response.data);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);
+                } else if (err.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                    console.log(err.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log("Error", err.message);
+                }
+                console.log(err.config);
+            });
+    }
+
 }
 
 function doWhatItSays() {
